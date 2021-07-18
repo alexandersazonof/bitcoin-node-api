@@ -33,7 +33,7 @@ public class BitcoinService {
 
     private void waitRefresh() {
         try {
-            TimeUnit.SECONDS.sleep(5);
+            TimeUnit.SECONDS.sleep(1);
         } catch (InterruptedException interruptedException) {
             throw new AppException(interruptedException);
         }
