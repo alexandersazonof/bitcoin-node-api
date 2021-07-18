@@ -1,5 +1,7 @@
 package com.lamarro.bitcoinnodeapi.conotrller;
 
+import com.lamarro.bitcoinnodeapi.service.BitcoinService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -9,7 +11,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 @RestController
+@RequiredArgsConstructor
 public class ExecuteController {
+
+    private final BitcoinService bitcoinService;
+
 
     @GetMapping
     private String execute() throws IOException, InterruptedException {
@@ -36,5 +42,10 @@ public class ExecuteController {
 //        RestTemplate restTemplate = new RestTemplate();
 
 //        return restTemplate.getForEntity("https://chain.so/api/v2/get_info/DOGE", String.class).getBody();
+    }
+
+    @GetMapping("/getblockchaininfo")
+    public String getBlochChainInfo() {
+        return bitcoinService.getBlochChainInfo();
     }
 }
