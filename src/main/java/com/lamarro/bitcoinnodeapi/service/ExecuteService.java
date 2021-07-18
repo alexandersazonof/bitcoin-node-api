@@ -1,5 +1,6 @@
 package com.lamarro.bitcoinnodeapi.service;
 
+import com.lamarro.bitcoinnodeapi.data.constant.Commands;
 import com.lamarro.bitcoinnodeapi.exception.AppException;
 import com.lamarro.bitcoinnodeapi.exception.BitcoinNotStartedException;
 import lombok.extern.slf4j.Slf4j;
@@ -23,12 +24,14 @@ public class ExecuteService {
             String line = reader.readLine();
             boolean isFirstIteration = true;
             StringBuilder result = new StringBuilder();
+
             log.info("Result: " + line + " ,command: " + command);
+
             do {
                 log.info("Result: " + line + " ,size: " + (line != null ? line.length() : 0));
-                if ((line == null || line.isBlank()) && isFirstIteration) {
+                if (needToStartupNode(isFirstIteration, line, command)) {
                     log.error(String.format("Incorrect result %s, try to start bitcoind", line));
-                   throw new BitcoinNotStartedException();
+                    throw new BitcoinNotStartedException();
                 }
                 isFirstIteration = false;
                 result.append(line).append("\n");
@@ -41,5 +44,9 @@ public class ExecuteService {
         } catch (InterruptedException | IOException e) {
             throw new AppException(e);
         }
+    }
+
+    private boolean needToStartupNode(boolean isFirstIteration, String line, String command) {
+        return ((line == null || line.isBlank()) && isFirstIteration) || !Commands.BITCOIND.equals(command);
     }
 }
