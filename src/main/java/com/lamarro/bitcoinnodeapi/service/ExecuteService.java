@@ -23,6 +23,7 @@ public class ExecuteService {
             String line = reader.readLine();
             boolean isFirstIteration = true;
             StringBuilder result = new StringBuilder();
+            log.info("Result: " + line + " ,command: " + command);
             do {
                 log.info("Result: " + line + " ,size: " + (line != null ? line.length() : 0));
                 if ((line == null || line.isBlank()) && isFirstIteration) {
