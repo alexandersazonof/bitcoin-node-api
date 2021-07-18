@@ -27,6 +27,10 @@ public class ExecuteService {
 
             log.info("Result: " + line + " ,command: " + command);
 
+            if (Commands.BITCOIND.equals(command)) {
+                log.info("This is startup command");
+                line = "Started";
+            }
             do {
                 log.info("Result: " + line + " ,size: " + (line != null ? line.length() : 0));
                 if (needToStartupNode(isFirstIteration, line, command)) {
@@ -47,6 +51,6 @@ public class ExecuteService {
     }
 
     private boolean needToStartupNode(boolean isFirstIteration, String line, String command) {
-        return ((line == null || line.isBlank()) && isFirstIteration) || !Commands.BITCOIND.equals(command);
+        return ((line == null || line.isBlank()) && isFirstIteration);
     }
 }
