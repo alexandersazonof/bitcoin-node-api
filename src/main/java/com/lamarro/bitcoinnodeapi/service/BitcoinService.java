@@ -41,10 +41,13 @@ public class BitcoinService {
         }
     }
 
-    public BigDecimal getBalance(String address) {
-        String value = executeService.executeCommand(String.format(Commands.GET_RECEIVED_BY_ACCOUNTS, address));
+    public String getBalance(String address) {
+        String value = executeService
+                .executeCommand(String.format(Commands.GET_RECEIVED_BY_ACCOUNTS, address))
+                .replaceAll(" ", "");
+
         log.info("Get balance value: " + value);
-        return new BigDecimal(value);
+        return value;
     }
 
     public String executeCommand(String command) {

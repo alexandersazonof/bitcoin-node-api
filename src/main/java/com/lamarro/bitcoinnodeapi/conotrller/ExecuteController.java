@@ -58,7 +58,7 @@ public class ExecuteController {
     }
 
     @GetMapping("/getbalance/{address}")
-    public BigDecimal getBalance(@PathVariable String address) {
+    public String getBalance(@PathVariable String address) {
         return bitcoinService.getBalance(address);
     }
 }
