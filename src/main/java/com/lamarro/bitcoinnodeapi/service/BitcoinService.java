@@ -43,7 +43,7 @@ public class BitcoinService {
 
     public BigDecimal getBalance(String address) {
         String value = executeService.executeCommand(String.format(Commands.GET_RECEIVED_BY_ACCOUNTS, address));
-
+        log.info("Get balance value: " + value);
         return new BigDecimal(value);
     }
 
