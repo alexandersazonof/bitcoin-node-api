@@ -7,4 +7,10 @@ public interface Commands {
 //  bitcoin-cli
     String BITCOIN_CLI = "bitcoin-cli ";
     String GET_BLOCKCHAIN_INFO = BITCOIN_CLI + "getblockchaininfo";
+    String CREATE_ACCOUNT = BITCOIN_CLI + "getnewaddress";
+    String ADDRESS_INFO_FORMAT = BITCOIN_CLI + "getaddressinfo %s";
+    String GET_PRIVATE_KEY_FORMAT = BITCOIN_CLI + "dumpprivkey %s";
+    String GET_RECEIVED_BY_ACCOUNTS = BITCOIN_CLI + "getreceivedbyaddress %s";
+
+
 }
